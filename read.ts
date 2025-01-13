@@ -7,8 +7,6 @@ import { Duplex, Readable } from "node:stream";
 
 const EOF = "\0".charCodeAt(0);
 
-export type ReaderInput = ReadableStream<Uint8Array> | Readable | Duplex;
-
 /**
  * Concatenate an array of Uint8Arrays into a single Uint8Array.
  */
@@ -120,14 +118,14 @@ export default function read(
  * ```
  */
 export default function read(
-  stream: Readable,
+  stream: ReadableStream<Uint8Array> | Readable | Duplex,
 ): Promise<Uint8Array>;
 /**
  * Read data from a readable stream.
  * Reads until the stream is closed or an EOF byte is encountered.
  */
 export default function read(
-  stream: ReaderInput,
+  stream: ReadableStream<Uint8Array> | Readable | Duplex,
 ): Promise<Uint8Array> {
   if (stream instanceof Readable || stream instanceof Duplex) {
     return readReadable(stream);

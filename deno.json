@@ -17,6 +17,10 @@
       "mod.ts",
       "read.ts",
       "write.ts"
+    ],
+    "exclude": [
+      "deno.lock",
+      "package.json"
     ]
   }
 }

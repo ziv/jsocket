@@ -5,8 +5,6 @@
  */
 import { Writable } from "node:stream";
 
-export type WriterInput = WritableStream<Uint8Array> | Writable;
-
 /**
  * Write data to a writable stream in chunks of 1024 bytes.
  */
@@ -84,14 +82,14 @@ export default function write(
  * ```
  */
 export default function write(
-  stream: Writable,
+  stream: WritableStream<Uint8Array> | Writable,
   data: Uint8Array,
 ): Promise<void>;
 /**
  * Write data to a writable stream in chunks of 1024 bytes.
  */
 export default function write(
-  stream: WriterInput,
+  stream: WritableStream<Uint8Array> | Writable,
   data: Uint8Array,
 ): Promise<void> {
   if (stream instanceof Writable) {
