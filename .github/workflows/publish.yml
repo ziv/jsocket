@@ -14,11 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Test
+      - name: Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
+
+      - name: Test
         run: deno test
-        
+
       - name: Publish
         run: npx jsr publish
