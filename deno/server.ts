@@ -24,7 +24,10 @@ const safeRemoveSync = (path: string): boolean => {
   }
 };
 
-export default function createServer(path: string, handler: ConnectionHandler) {
+export default function createServer(
+  path: string,
+  handler: ConnectionHandler,
+): Deno.UnixListener {
   if (safeIsSocket(path)) safeRemoveSync(path);
   const server = Deno.listen({ path, transport: "unix" });
   (async () => {
