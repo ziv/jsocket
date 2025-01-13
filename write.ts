@@ -1,4 +1,4 @@
-/// <reference types="npm:@types/node" />
+/// <reference types="npm:@types/node@^22.10.5" />
 /**
  * Write data to a writable stream.
  * Supports both WritableStream and Node.js streams.
