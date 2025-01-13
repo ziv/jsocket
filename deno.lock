@@ -29,12 +29,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@^1.0.10"
-    ],
-    "packageJson": {
-      "dependencies": [
-        "npm:@types/node@^22.10.5"
-      ]
-    }
+      "jsr:@std/assert@^1.0.10",
+      "npm:@types/node@^22.10.5"
+    ]
   }
 }

@@ -1,14 +1,20 @@
 {
+  "$schema": "https://deno.land/x/deno@v2.1.5/cli/schemas/config-file.v1.json",
   "name": "@xpr/jsocket",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "license": "MIT",
+  "description": "A simple unix socket server/client utilities",
   "exports": {
     ".": "./mod.ts",
     "./read": "./read.ts",
     "./write": "./write.ts"
   },
+  "tasks": {
+    "test": "deno test"
+  },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^1.0.10"
+    "@std/assert": "jsr:@std/assert@^1.0.10",
+    "@types/node": "npm:@types/node@^22.10.5"
   },
   "publish": {
     "include": [
