@@ -1,6 +1,6 @@
 /**
  * Write data to a writable stream.
- * This overload is for compatibility with Node.js streams.
+ * Supports both WritableStream and Node.js streams.
  * @module
  */
 import { Writable } from "node:stream";

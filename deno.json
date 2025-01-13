@@ -9,5 +9,14 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.10"
+  },
+  "publish": {
+    "include": [
+      "LICENSE",
+      "readme.md",
+      "mod.ts",
+      "read.ts",
+      "write.ts"
+    ]
   }
 }

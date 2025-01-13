@@ -1,6 +1,6 @@
 /**
  * Read and write data from streams.
- * Supports both ReadableStream and Node.js streams.
+ * Supports ReadableStream, WritableStream, and Node.js streams.
  * @module
  */
 import read from "./read.ts";
