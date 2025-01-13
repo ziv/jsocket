@@ -20,7 +20,7 @@ jobs:
           deno-version: v2.x
 
       - name: Install
-        run: npm install
+        run: deno install
 
       - name: Test
         run: deno test
