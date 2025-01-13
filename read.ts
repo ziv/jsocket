@@ -1,3 +1,8 @@
+/**
+ * Read data from a readable stream.
+ * Supports both ReadableStream and Node.js streams.
+ * @module
+ */
 import { Duplex, Readable } from "node:stream";
 
 const EOF = "\0".charCodeAt(0);

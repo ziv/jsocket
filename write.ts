@@ -1,3 +1,8 @@
+/**
+ * Write data to a writable stream.
+ * This overload is for compatibility with Node.js streams.
+ * @module
+ */
 import { Writable } from "node:stream";
 
 export type WriterInput = WritableStream<Uint8Array> | Writable;
