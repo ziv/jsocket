@@ -4,6 +4,9 @@ const EOF = "\0".charCodeAt(0);
 
 export type ReaderInput = ReadableStream<Uint8Array> | Readable | Duplex;
 
+/**
+ * Concatenate an array of Uint8Arrays into a single Uint8Array.
+ */
 const concat = (chunks: Uint8Array[]): Uint8Array => {
   const length = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
   const result = new Uint8Array(length);
@@ -15,6 +18,19 @@ const concat = (chunks: Uint8Array[]): Uint8Array => {
   return result;
 };
 
+/**
+ * Read data from a readable stream.
+ * Reads until the stream is closed or an EOF byte is encountered.
+ *
+ * @example usage:
+ * ```ts
+ * import { assertEquals } from "@std/assert";
+ * import read from "@xpr/jsocket/read";
+ *
+ * const readable = new ReadableStream<Uint8Array>({});
+ * const raw = await read(readable);
+ * ```
+ */
 async function readReadableStream(
   stream: ReadableStream<Uint8Array>,
 ): Promise<Uint8Array> {
@@ -37,6 +53,21 @@ async function readReadableStream(
   return concat(chunks);
 }
 
+/**
+ * Read data from a readable stream.
+ * Reads until the stream is closed or an EOF byte is encountered.
+ * This overload is for compatibility with Node.js streams.
+ *
+ * @example usage:
+ * ```ts
+ * import { Readable } from "node:stream";
+ * import { assertEquals } from "@std/assert";
+ * import read from "@xpr/jsocket/read";
+ *
+ * const readable = new Readable({});
+ * const raw = await read(readable);
+ * ```
+ */
 function readReadable(stream: Readable | Duplex): Promise<Uint8Array> {
   return new Promise<Uint8Array>((resolve) => {
     const chunks: Uint8Array[] = [];
@@ -52,12 +83,44 @@ function readReadable(stream: Readable | Duplex): Promise<Uint8Array> {
   });
 }
 
-export default function read(
-  stream: Readable,
-): Promise<Uint8Array>;
+/**
+ * Read data from a readable stream.
+ * Reads until the stream is closed or an EOF byte is encountered.
+ *
+ * @example usage:
+ * ```ts
+ * import { assertEquals } from "@std/assert";
+ * import read from "@xpr/jsocket/read";
+ *
+ * const readable = new ReadableStream<Uint8Array>({});
+ * const raw = await read(readable);
+ * ```
+ */
 export default function read(
   stream: ReadableStream<Uint8Array>,
 ): Promise<Uint8Array>;
+/**
+ * Read data from a readable stream.
+ * Reads until the stream is closed or an EOF byte is encountered.
+ * This overload is for compatibility with Node.js streams.
+ *
+ * @example usage:
+ * ```ts
+ * import { Readable } from "node:stream";
+ * import { assertEquals } from "@std/assert";
+ * import read from "@xpr/jsocket/read";
+ *
+ * const readable = new Readable({});
+ * const raw = await read(readable);
+ * ```
+ */
+export default function read(
+  stream: Readable,
+): Promise<Uint8Array>;
+/**
+ * Read data from a readable stream.
+ * Reads until the stream is closed or an EOF byte is encountered.
+ */
 export default function read(
   stream: ReaderInput,
 ): Promise<Uint8Array> {
