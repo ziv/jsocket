@@ -13,7 +13,7 @@
   },
   "tasks": {
     "test": "deno test",
-    "build-npm": "tsc && vite build"
+    "build-npm": "./create-npm-package.sh"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.10"

@@ -5,9 +5,9 @@
  * @module
  */
 import { createServer, type Server } from "node:net";
-import read from "./read.ts";
-import write from "./write.ts";
-import { addEOF, removeEOF } from "../utils.ts";
+import read from "./read.js";
+import write from "./write.js";
+import { addEOF, removeEOF } from "./utils.js";
 
 /**
  * Connection handler function.
