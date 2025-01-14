@@ -36,14 +36,14 @@ export type UnixTransportServer<T = unknown> = { server: T };
  * @module
  */
 export default function server(
-    path: string,
-    handler: ConnectionHandler,
+  path: string,
+  handler: ConnectionHandler,
 ): UnixTransportServer<Server> {
-    const server = createServer(async (conn) => {
-        const buf = new TextDecoder().decode(await read(conn));
-        const res = await handler(removeEOF(buf));
-        await write(conn, new TextEncoder().encode(addEOF(res)));
-    });
-    server.listen(path);
-    return { server };
+  const server = createServer(async (conn) => {
+    const buf = new TextDecoder().decode(await read(conn));
+    const res = await handler(removeEOF(buf));
+    await write(conn, new TextEncoder().encode(addEOF(res)));
+  });
+  server.listen(path);
+  return { server };
 }
