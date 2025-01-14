@@ -4,6 +4,16 @@
  *
  * The package supports both `Deno` and `Node.js`.
  *
+ * ## Installation
+ *
+ * ```shell
+ * # Deno
+ * deno add jsr:@xpr/jsocket
+ *
+ * # Node.js
+ * npm i @xpr/jsocket
+ * ```
+ *
  * ## Read and write data from streams.
  *
  * All read and write operations are throttled to avoid memory exhaustion.
