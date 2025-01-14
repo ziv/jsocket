@@ -1,0 +1,35 @@
+{
+  "name": "@xpr/jsocket",
+  "version": "0.11.0",
+  "description": "A simple unix socket server/client utilities",
+  "main": "mod.js",
+  "author": "Ziv Perry",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "unix",
+    "socket",
+    "server",
+    "client"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./read": "./read.js",
+    "./write": "./write.js",
+    "./server": "./server.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "../LICENSE",
+    "readme.md",
+    "index.js",
+    "client.js",
+    "read.js",
+    "server.js",
+    "write.js"
+  ],
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
+  }
+}

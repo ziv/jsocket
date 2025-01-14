@@ -1,9 +1,25 @@
+/**
+ * Create a Unix socket client and make a request.
+ *
+ * Supports both Deno and Node.js runtimes.
+ * @module
+ */
 import { createConnection } from "node:net";
-import read from "../read.ts";
-import write from "../write.ts";
+import read from "./read.ts";
+import write from "./write.ts";
 import { addEOF, removeEOF } from "./utils.ts";
 
-export default function createNodejsClient(path: string, body: string) {
+/**
+ * Create a Unix socket client and make a request.
+ *
+ * @example usage:
+ * ```ts
+ * import client from "@xpr/jsocket/client";
+ *
+ * const response = await client("/tmp/my-socket", "Hello, world!");
+ * ```
+ */
+export default function client(path: string, body: string) {
   return new Promise<string>((resolve, reject) => {
     const conn = createConnection(path);
     conn.on("connect", async () => {

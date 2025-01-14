@@ -4,8 +4,9 @@
  * Supports both Deno and Node.js runtimes.
  * @module
  */
-import vendor from "./vendor/vendor.ts";
-import type { CreateClient } from "./vendor/types.ts";
+import read from "./read.ts";
+import write from "./write.ts";
+import { addEOF, removeEOF } from "./utils.ts";
 
 /**
  * Create a Unix socket client and make a request.
@@ -17,13 +18,11 @@ import type { CreateClient } from "./vendor/types.ts";
  * const response = await client("/tmp/my-socket", "Hello, world!");
  * ```
  */
-export default async function client(
-  path: string,
-  body: string,
-): Promise<string> {
-  const createClient = await vendor<CreateClient>(
-    () => import("./vendor/create-deno-client.ts"),
-    () => import("./vendor/create-nodejs-client.ts"),
-  );
-  return createClient(path, body);
+export default async function client(path: string, body: string) {
+  const conn = await Deno.connect({ path, transport: "unix" });
+  const readable = read(conn.readable);
+  await write(conn.writable, new TextEncoder().encode(addEOF(body)));
+  const response = await readable;
+  conn.close();
+  return removeEOF(new TextDecoder().decode(response));
 }

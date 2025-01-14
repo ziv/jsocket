@@ -4,6 +4,7 @@
  * Supports both Deno and Node.js runtimes.
  * @module
  */
+import { createServer, type Server } from "node:net";
 import read from "./read.ts";
 import write from "./write.ts";
 import { addEOF, removeEOF } from "./utils.ts";
@@ -37,14 +38,12 @@ export type UnixTransportServer<T = unknown> = { server: T };
 export default function server(
   path: string,
   handler: ConnectionHandler,
-): UnixTransportServer<Deno.Listener> {
-  const server = Deno.listen({ path, transport: "unix" });
-  (async () => {
-    for await (const conn of server) {
-      const buf = new TextDecoder().decode(await read(conn.readable));
-      const res = await handler(removeEOF(buf));
-      await write(conn.writable, new TextEncoder().encode(addEOF(res)));
-    }
-  })();
+): UnixTransportServer<Server> {
+  const server = createServer(async (conn) => {
+    const buf = new TextDecoder().decode(await read(conn));
+    const res = await handler(removeEOF(buf));
+    await write(conn, new TextEncoder().encode(addEOF(res)));
+  });
+  server.listen(path);
   return { server };
 }

@@ -7,10 +7,13 @@
   "exports": {
     ".": "./mod.ts",
     "./read": "./read.ts",
-    "./write": "./write.ts"
+    "./write": "./write.ts",
+    "./server": "./server.ts",
+    "./client": "./client.ts"
   },
   "tasks": {
-    "test": "deno test"
+    "test": "deno test",
+    "build-npm": "tsc && vite build"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.10",
