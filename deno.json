@@ -21,12 +21,14 @@
       "LICENSE",
       "readme.md",
       "mod.ts",
+      "client.ts",
       "read.ts",
-      "write.ts"
+      "server.ts",
+      "write.ts",
+      "vendor/**"
     ],
     "exclude": [
-      "deno.lock",
-      "package.json"
+      "deno.lock"
     ]
   }
 }
