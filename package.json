@@ -5,6 +5,7 @@
   "main": "mod.js",
   "author": "Ziv Perry",
   "license": "MIT",
+  "private": false,
   "keywords": [
     "unix",
     "socket",
