@@ -18,7 +18,10 @@ import { addEOF, removeEOF } from "./utils.ts";
  * const response = await client("/tmp/my-socket", "Hello, world!");
  * ```
  */
-export default async function client(path: string, body: string) {
+export default async function client(
+  path: string,
+  body: string,
+): Promise<string> {
   const conn = await Deno.connect({ path, transport: "unix" });
   const readable = read(conn.readable);
   await write(conn.writable, new TextEncoder().encode(addEOF(body)));
