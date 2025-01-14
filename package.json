@@ -1,6 +1,6 @@
 {
   "name": "@xpr/jsocket",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A simple unix socket server/client utilities",
   "main": "mod.js",
   "author": "Ziv Perry",
