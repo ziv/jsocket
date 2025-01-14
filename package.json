@@ -26,6 +26,7 @@
     "client.js",
     "read.js",
     "server.js",
+    "utils.js",
     "write.js"
   ],
   "devDependencies": {
