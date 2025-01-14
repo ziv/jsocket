@@ -28,6 +28,7 @@
       "read.ts",
       "server.ts",
       "write.ts",
+      "utils.ts",
       "vendor/**"
     ],
     "exclude": [
