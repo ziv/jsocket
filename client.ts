@@ -17,7 +17,10 @@ import type { CreateClient } from "./vendor/types.ts";
  * const response = await client("/tmp/my-socket", "Hello, world!");
  * ```
  */
-export default async function client(path: string, body: string) {
+export default async function client(
+  path: string,
+  body: string,
+): Promise<string> {
   const createClient = await vendor<CreateClient>(
     () => import("./vendor/create-deno-client.ts"),
     () => import("./vendor/create-nodejs-client.ts"),

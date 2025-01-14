@@ -4,7 +4,11 @@
  * Supports both Deno and Node.js runtimes.
  * @module
  */
-import type { ConnectionHandler, CreateServer } from "./vendor/types.ts";
+import type {
+  ConnectionHandler,
+  CreateServer,
+  UnixTransportServer,
+} from "./vendor/types.ts";
 import vendor from "./vendor/vendor.ts";
 
 /**
@@ -20,7 +24,10 @@ import vendor from "./vendor/vendor.ts";
  * });
  * ```
  */
-export default async function server(path: string, handler: ConnectionHandler) {
+export default async function server(
+  path: string,
+  handler: ConnectionHandler,
+): Promise<UnixTransportServer> {
   const createServer = await vendor<CreateServer>(
     () => import("./vendor/create-deno-server.ts"),
     () => import("./vendor/create-nodejs-server.ts"),

@@ -1,6 +1,6 @@
 export type ConnectionHandler = (buf: string) => Promise<string>;
 
-export type UnixTransportServer<T> = { server: T };
+export type UnixTransportServer<T = unknown> = { server: T };
 
 export type CreateServer<T = unknown> = (
   path: string,
