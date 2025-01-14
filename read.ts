@@ -1,4 +1,3 @@
-/// <reference types="npm:@types/node@^22.10.5" />
 /**
  * Read data from a readable stream.
  * Supports both ReadableStream and Node.js streams.

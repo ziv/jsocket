@@ -1,8 +1,14 @@
 /**
- * Read and write data from streams.
- * Supports ReadableStream, WritableStream, and Node.js streams.
+ * This package provides a simple way to create a server/client
+ * communication (request/response method) using unix sockets.
  *
- * @example read from any readable stream
+ * The package supports both `Deno` and `Node.js`.
+ *
+ * ## Read and write data from streams.
+ *
+ * All read and write operations are throttled to avoid memory exhaustion.
+ *
+ * @example read from *any* readable stream
  * ```ts
  * import { read } from "@xpr/jsocket/read";
  *
@@ -18,9 +24,30 @@
  * await write(stream, data);
  * ```
  *
+ * ## Creating a Unix socket server and client
+ *
+ * @example example server:
+ * ```ts
+ * import createServer from "@xpr/jsocket/server";
+ *
+ * await createServer("/tmp/my-socket", async (buf: string) => {
+ *    return buf.toUpperCase();
+ * });
+ * ```
+ *
+ * @example example client:
+ * ```ts
+ * import request from "@xpr/jsocket/request";
+ *
+ * const response = await request("/tmp/my-socket", "Hello, world!");
+ * console.log(response); // HELLO, WORLD!
+ * ```
+ *
  * @module
  */
 import read from "./read.ts";
 import write from "./write.ts";
+import client from "./client.ts";
+import server from "./server.ts";
 
-export { read, write };
+export { client, read, server, write };
