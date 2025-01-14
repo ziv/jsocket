@@ -2,7 +2,7 @@ name: Publish
 
 on:
   release:
-    types: [ created ]
+    types: [created]
 
 jobs:
   publish:
@@ -25,15 +25,14 @@ jobs:
       - name: Test
         run: deno test
 
-
       - name: Publish JSR
         run: npx jsr publish
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "22.x"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install Node.js dependencies
         run: npm ci

@@ -4,28 +4,22 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
+      "ES2020"
     ],
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    "noEmit": false,
     "strict": true,
+    "declaration": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "*.ts",
-    "vendor/*.ts"
-  ],
-  "exclude": [
-    "*_test.ts",
-    "vendor/*_test.ts"
+    "."
   ]
 }

@@ -23,13 +23,20 @@
     "LICENSE",
     "readme.md",
     "index.js",
+    "index.d.ts",
     "client.js",
+    "client.d.ts",
     "read.js",
+    "read.d.ts",
     "server.js",
+    "server.d.ts",
     "utils.js",
-    "write.js"
+    "utils.d.ts",
+    "write.js",
+    "write.d.ts"
   ],
   "devDependencies": {
+    "@types/node": "^22.10.6",
     "typescript": "^5.7.3",
     "vite": "^6.0.7"
   }

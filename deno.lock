@@ -5,6 +5,7 @@
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "npm:@types/node@*": "22.5.4",
     "npm:@types/node@^22.10.5": "22.10.5",
+    "npm:@types/node@^22.10.6": "22.10.6",
     "npm:typescript@^5.7.3": "5.7.3",
     "npm:vite@^6.0.7": "6.0.7_@types+node@22.5.4"
   },
@@ -161,6 +162,12 @@
         "undici-types@6.20.0"
       ]
     },
+    "@types/node@22.10.6": {
+      "integrity": "sha512-qNiuwC4ZDAUNcY47xgaSuS92cjf8JbSUoaKS77bmLG1rU7MlATVSiw/IlrjtIyyskXBZ8KkNfjK/P5na7rgXbQ==",
+      "dependencies": [
+        "undici-types@6.20.0"
+      ]
+    },
     "@types/node@22.5.4": {
       "integrity": "sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==",
       "dependencies": [
@@ -270,6 +277,7 @@
     ],
     "packageJson": {
       "dependencies": [
+        "npm:@types/node@^22.10.6",
         "npm:typescript@^5.7.3",
         "npm:vite@^6.0.7"
       ]

@@ -16,8 +16,7 @@
     "build-npm": "tsc && vite build"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^1.0.10",
-    "@types/node": "npm:@types/node@^22.10.5"
+    "@std/assert": "jsr:@std/assert@^1.0.10"
   },
   "publish": {
     "include": [
@@ -28,8 +27,7 @@
       "read.ts",
       "server.ts",
       "write.ts",
-      "utils.ts",
-      "vendor/**"
+      "utils.ts"
     ],
     "exclude": [
       "deno.lock"
