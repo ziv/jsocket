@@ -2,7 +2,7 @@ name: Publish
 
 on:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   publish:
@@ -19,6 +19,17 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Create npm package
+        run: ./create-npm-package.sh
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+
       - name: Install Deno dependencies
         run: deno install
 
@@ -27,17 +38,3 @@ jobs:
 
       - name: Publish JSR
         run: npx jsr publish
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.x"
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Create npm package
-        run: ./create-npm-package.sh
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}

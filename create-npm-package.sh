@@ -9,4 +9,4 @@ cp LICENSE ./dist/npm/LICENSE
 cd ./dist/npm
 npm ci
 tsc -p tsconfig.json
-npm publish --access public
+npm publish --access public --dry-run
