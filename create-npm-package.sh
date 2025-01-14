@@ -3,8 +3,8 @@ mkdir -p ./dist/npm
 # copy files make necessary changes
 cp readme.md ./dist/npm/readme.md
 cp LICENSE ./dist/npm/LICENSE
-cp npm/package.json ./dist/npm/package.json
-cp npm/tsconfig.npm.json ./dist/npm/tsconfig.json
+cp package.json ./dist/npm/package.json
+cp tsconfig.npm.json ./dist/npm/tsconfig.json
 
 cp mod.ts ./dist/npm/index.ts # nodejs entry point
 cp read.ts ./dist/npm/read.ts

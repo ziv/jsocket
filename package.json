@@ -20,7 +20,7 @@
     "./client": "./client.js"
   },
   "files": [
-    "../LICENSE",
+    "LICENSE",
     "readme.md",
     "index.js",
     "client.js",
