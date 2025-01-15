@@ -4,10 +4,10 @@
  * Supports both Deno and Node.js runtimes.
  * @module
  */
-import { createServer, type Server } from 'node:net';
-import type { ValueType } from './value';
-import read from './read';
-import write from './write';
+import { createServer, type Server } from "node:net";
+import type { ValueType } from "./value";
+import read from "./read";
+import write from "./write";
 
 /**
  * Connection handler function.
@@ -19,8 +19,8 @@ export type ConnectionHandler = (buf: ValueType) => Promise<ValueType>;
  * Unix socket server.
  */
 export type UnixTransportServer<T = unknown> = {
-    server: T;
-    events: EventTarget;
+  server: T;
+  events: EventTarget;
 };
 
 /**
@@ -39,20 +39,20 @@ export type UnixTransportServer<T = unknown> = {
  * @module
  */
 export default function server(
-    path: string,
-    handler: ConnectionHandler,
+  path: string,
+  handler: ConnectionHandler,
 ): UnixTransportServer<Server> {
-    const events = new EventTarget();
-    const server = createServer(async (conn) => {
-        const {decode, encode} = await import('@std/msgpack');
-        try {
-            const request = decode(await read(conn));
-            const response = await handler(request);
-            await write(conn, encode(response));
-        } catch (error) {
-            events.dispatchEvent(new ErrorEvent('error', {error}));
-        }
-    });
-    server.listen(path);
-    return {server, events};
+  const events = new EventTarget();
+  const server = createServer(async (conn) => {
+    const { decode, encode } = await import("@std/msgpack");
+    try {
+      const request = decode(await read(conn));
+      const response = await handler(request);
+      await write(conn, encode(response));
+    } catch (error) {
+      events.dispatchEvent(new ErrorEvent("error", { error }));
+    }
+  });
+  server.listen(path);
+  return { server, events };
 }

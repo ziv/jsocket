@@ -20,7 +20,9 @@
     "./client": "./client.js"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json && cp {package*.json,../LICENSE,../readme.md} dist/",
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.json && cp {package*.json,../LICENSE,../readme.md} dist/",
+    "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/",
     "promote": "cd dist && npm publish --access public"
   },
   "devDependencies": {

@@ -4,7 +4,8 @@ A simple unix socket server/client utilities.
 
 ## About
 
-This package provides a simple way to create a server/client communication using unix sockets.
+This package provides a simple way to create a server/client communication using
+unix sockets.
 
 The package supports both Deno and Node.js.
 

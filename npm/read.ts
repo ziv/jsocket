@@ -3,9 +3,9 @@
  * Supports both ReadableStream and Node.js streams.
  * @module
  */
-import type { Duplex, Readable } from 'node:stream';
+import type { Duplex, Readable } from "node:stream";
 
-const EOF = '\0'.charCodeAt(0);
+const EOF = "\0".charCodeAt(0);
 
 /**
  * Read data from a readable stream.
@@ -21,18 +21,20 @@ const EOF = '\0'.charCodeAt(0);
  * const raw = await read(readable);
  * ```
  */
-export default async function read(stream: Readable | Duplex): Promise<Uint8Array> {
-    const {concat} = await import('@std/bytes');
-    return new Promise<Uint8Array>((resolve) => {
-        const chunks: Uint8Array[] = [];
-        stream.on('data', (chunk: Uint8Array) => {
-            chunks.push(chunk);
-            if (chunk.at(-1) === EOF) {
-                resolve(concat(chunks).slice(0, -1)); // Remove EOF
-            }
-        });
-        stream.on('end', () => {
-            resolve(concat(chunks));
-        });
+export default async function read(
+  stream: Readable | Duplex,
+): Promise<Uint8Array> {
+  const { concat } = await import("@std/bytes");
+  return new Promise<Uint8Array>((resolve) => {
+    const chunks: Uint8Array[] = [];
+    stream.on("data", (chunk: Uint8Array) => {
+      chunks.push(chunk);
+      if (chunk.at(-1) === EOF) {
+        resolve(concat(chunks).slice(0, -1)); // Remove EOF
+      }
     });
+    stream.on("end", () => {
+      resolve(concat(chunks));
+    });
+  });
 }

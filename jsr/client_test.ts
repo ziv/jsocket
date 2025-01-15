@@ -1,7 +1,7 @@
-import { encode } from '@std/msgpack';
-import { assertSpyCalls, resolvesNext, stub } from '@std/testing/mock';
-import { assertEquals } from '@std/assert';
-import client from './client.ts';
+import { encode } from "@std/msgpack";
+import { assertSpyCalls, resolvesNext, stub } from "@std/testing/mock";
+import { assertEquals } from "@std/assert";
+import client from "./client.ts";
 
 Deno.test("client should send a request and read return the reply", async () => {
   const dummy = {
