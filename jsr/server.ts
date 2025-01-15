@@ -49,6 +49,11 @@ export default function server(
         const response = await handler(request);
         await write(conn.writable, encode(response));
       } catch (error) {
+        try {
+          conn.close && conn.close();
+        } catch (_) {
+          // ignore
+        }
         events.dispatchEvent(new ErrorEvent("error", { error }));
       }
     }
