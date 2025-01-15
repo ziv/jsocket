@@ -29,8 +29,7 @@
       "client.ts",
       "read.ts",
       "server.ts",
-      "write.ts",
-      "utils.ts"
+      "write.ts"
     ],
     "exclude": [
       "deno.lock"

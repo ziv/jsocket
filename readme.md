@@ -1,5 +1,7 @@
 # jsocket
 
+[![Publish](https://github.com/ziv/jsocket/actions/workflows/publish.yml/badge.svg)](https://github.com/ziv/jsocket/actions/workflows/publish.yml)
+
 A simple unix socket server/client utilities.
 
 ## About
