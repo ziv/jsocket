@@ -3,7 +3,7 @@ name: Publish
 on:
   workflow_dispatch:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   publish:
@@ -43,8 +43,8 @@ jobs:
         run: npm run build
 
       - name: Publish npm package
-        working-directory: npm
-        run: npm run promote
+        working-directory: npm/dist
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
 
