@@ -25,16 +25,26 @@ jobs:
           node-version: "22.x"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Create npm package
-        run: ./create-npm-package.sh
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
-
       - name: Install Deno dependencies
+        working-directory: jsr
         run: deno install
 
-      - name: Test
+      - name: Test Deno
+        working-directory: jsr
         run: deno test
 
-      - name: Publish JSR
-        run: npx jsr publish
+      - name: Install Node.js dependencies
+        working-directory: npm
+        run: npm ci
+#
+#      - name: Create npm package
+#        run: ./create-npm-package.sh
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+#
+#
+#
+#
+#
+#      - name: Publish JSR
+#        run: npx jsr publish
