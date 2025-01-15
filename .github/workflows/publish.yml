@@ -37,15 +37,17 @@ jobs:
       - name: Install Node.js dependencies
         working-directory: npm
         run: npm ci
-#
-#      - name: Create npm package
-#        run: ./create-npm-package.sh
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
-#
-#
-#
-#
-#
-#      - name: Publish JSR
-#        run: npx jsr publish
+      #
+      - name: Create npm package
+        working-directory: npm
+        run: npm run build
+
+      - name: Publish npm package
+        working-directory: npm
+        run: npm run promote
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
+
+      - name: Publish JSR package
+        working-directory: jsr
+        run: npx jsr publish
