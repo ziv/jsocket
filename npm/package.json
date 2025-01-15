@@ -22,10 +22,10 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
-    "roll": "rollup --config roll.js --configPlugin typescript",
     "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/"
   },
   "devDependencies": {
+    "@types/node": "^22.10.6",
     "typescript": "^5.7.3"
   },
   "dependencies": {
