@@ -21,7 +21,7 @@
   },
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc -p tsconfig.json && cp {package*.json,../LICENSE,../readme.md} dist/",
+    "build": "tsc -p tsconfig.json",
     "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/",
     "promote": "cd dist && npm publish --access public"
   },
