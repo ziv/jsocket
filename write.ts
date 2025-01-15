@@ -3,6 +3,9 @@
  * Supports both WritableStream and Node.js streams.
  * @module
  */
+import { concat } from "@std/bytes";
+
+const EOF = new Uint8Array(["\0".charCodeAt(0)]);
 
 /**
  * Write data to a writable stream in chunks of 1024 bytes.
@@ -25,6 +28,7 @@ export default async function write(
   data: Uint8Array,
 ): Promise<void> {
   const writer = stream.getWriter();
+  data = concat([data, EOF]); // Add EOF
   for (let i = 0; i < data.length; i += 1024) {
     await writer.write(data.slice(i, i + 1024));
   }

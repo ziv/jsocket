@@ -5,9 +5,9 @@
  * @module
  */
 import { createConnection } from "node:net";
-import read from "./read.js";
-import write from "./write.js";
-import { addEOF, removeEOF } from "./utils.js";
+import { decode, encode, type ValueType } from "@std/msgpack";
+import read from "./read.ts";
+import write from "./write.ts";
 
 /**
  * Create a Unix socket client and make a request.
@@ -19,16 +19,19 @@ import { addEOF, removeEOF } from "./utils.js";
  * const response = await client("/tmp/my-socket", "Hello, world!");
  * ```
  */
-export default function client(path: string, body: string) {
-  return new Promise<string>((resolve, reject) => {
-    const conn = createConnection(path);
-    conn.on("connect", async () => {
-      const readable = read(conn);
-      await write(conn, new TextEncoder().encode(addEOF(body)));
-      const response = await readable;
-      conn.end();
-      resolve(removeEOF(new TextDecoder().decode(response)));
+export default function client<B extends ValueType, R extends ValueType>(
+    path: string,
+    body: B,
+) {
+    return new Promise<R>((resolve, reject) => {
+        const conn = createConnection(path);
+        conn.on("connect", async () => {
+            const readable = read(conn);
+            await write(conn, encode(body));
+            const response = await readable;
+            conn.end();
+            resolve(decode(response) as R);
+        });
+        conn.on("error", reject);
     });
-    conn.on("error", reject);
-  });
 }

@@ -4,9 +4,9 @@
  * Supports both Deno and Node.js runtimes.
  * @module
  */
+import { decode, encode, type ValueType } from "@std/msgpack";
 import read from "./read.ts";
 import write from "./write.ts";
-import { addEOF, removeEOF } from "./utils.ts";
 
 /**
  * Create a Unix socket client and make a request.
@@ -18,14 +18,14 @@ import { addEOF, removeEOF } from "./utils.ts";
  * const response = await client("/tmp/my-socket", "Hello, world!");
  * ```
  */
-export default async function client(
+export default async function client<B extends ValueType, R extends ValueType>(
   path: string,
-  body: string,
-): Promise<string> {
+  body: B,
+): Promise<R> {
   const conn = await Deno.connect({ path, transport: "unix" });
   const readable = read(conn.readable);
-  await write(conn.writable, new TextEncoder().encode(addEOF(body)));
+  await write(conn.writable, encode(body));
   const response = await readable;
   conn.close();
-  return removeEOF(new TextDecoder().decode(response));
+  return decode(response) as R;
 }

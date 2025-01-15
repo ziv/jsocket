@@ -45,9 +45,9 @@
  *
  * @module
  */
-import read from "./read.js";
-import write from "./write.js";
-import client from "./client.js";
-import server from "./server.js";
+import read from "./read.ts";
+import write from "./write.ts";
+import client from "./client.ts";
+import server from "./server.ts";
 
 export { client, read, server, write };

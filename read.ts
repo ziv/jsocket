@@ -3,22 +3,9 @@
  * Supports both ReadableStream and Node.js streams.
  * @module
  */
+import { concat } from "@std/bytes";
 
 const EOF = "\0".charCodeAt(0);
-
-/**
- * Concatenate an array of Uint8Arrays into a single Uint8Array.
- */
-const concat = (chunks: Uint8Array[]): Uint8Array => {
-  const length = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
-  const result = new Uint8Array(length);
-  let offset = 0;
-  for (const chunk of chunks) {
-    result.set(chunk, offset);
-    offset += chunk.length;
-  }
-  return result;
-};
 
 /**
  * Read data from a readable stream.
@@ -41,10 +28,11 @@ export default async function read(
   while (true) {
     const { value, done } = await reader.read();
     if (value instanceof Uint8Array) {
-      chunks.push(value);
       if (value.at(-1) === EOF) {
+        chunks.push(value.slice(0, -1)); // Remove EOF
         break;
       }
+      chunks.push(value);
     } else {
       break;
     }

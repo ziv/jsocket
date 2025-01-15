@@ -5,20 +5,23 @@
  * @module
  */
 import { createServer, type Server } from "node:net";
-import read from "./read.js";
-import write from "./write.js";
-import { addEOF, removeEOF } from "./utils.js";
+import { decode, encode, type ValueType } from "@std/msgpack";
+import read from "./read.ts";
+import write from "./write.ts";
 
 /**
  * Connection handler function.
  * Accepts a string buffer and returns a string.
  */
-export type ConnectionHandler = (buf: string) => Promise<string>;
+export type ConnectionHandler = (buf: ValueType) => Promise<ValueType>;
 
 /**
  * Unix socket server.
  */
-export type UnixTransportServer<T = unknown> = { server: T };
+export type UnixTransportServer<T = unknown> = {
+    server: T;
+    events: EventTarget;
+};
 
 /**
  * Create and start listening to Unix socket server.
@@ -36,14 +39,19 @@ export type UnixTransportServer<T = unknown> = { server: T };
  * @module
  */
 export default function server(
-  path: string,
-  handler: ConnectionHandler,
+    path: string,
+    handler: ConnectionHandler,
 ): UnixTransportServer<Server> {
-  const server = createServer(async (conn) => {
-    const buf = new TextDecoder().decode(await read(conn));
-    const res = await handler(removeEOF(buf));
-    await write(conn, new TextEncoder().encode(addEOF(res)));
-  });
-  server.listen(path);
-  return { server };
+    const events = new EventTarget();
+    const server = createServer(async (conn) => {
+        try {
+            const request = decode(await read(conn));
+            const response = await handler(request);
+            await write(conn, encode(response));
+        } catch (error) {
+            events.dispatchEvent(new ErrorEvent("error", { error }));
+        }
+    });
+    server.listen(path);
+    return { server, events };
 }

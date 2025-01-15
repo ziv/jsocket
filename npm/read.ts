@@ -4,22 +4,9 @@
  * @module
  */
 import type { Duplex, Readable } from "node:stream";
+import { concat } from "@std/bytes";
 
 const EOF = "\0".charCodeAt(0);
-
-/**
- * Concatenate an array of Uint8Arrays into a single Uint8Array.
- */
-const concat = (chunks: Uint8Array[]): Uint8Array => {
-  const length = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
-  const result = new Uint8Array(length);
-  let offset = 0;
-  for (const chunk of chunks) {
-    result.set(chunk, offset);
-    offset += chunk.length;
-  }
-  return result;
-};
 
 /**
  * Read data from a readable stream.
@@ -36,16 +23,16 @@ const concat = (chunks: Uint8Array[]): Uint8Array => {
  * ```
  */
 export default function read(stream: Readable | Duplex): Promise<Uint8Array> {
-  return new Promise<Uint8Array>((resolve) => {
-    const chunks: Uint8Array[] = [];
-    stream.on("data", (chunk: Uint8Array) => {
-      chunks.push(chunk);
-      if (chunk.at(-1) === EOF) {
-        resolve(concat(chunks));
-      }
+    return new Promise<Uint8Array>((resolve) => {
+        const chunks: Uint8Array[] = [];
+        stream.on("data", (chunk: Uint8Array) => {
+            chunks.push(chunk);
+            if (chunk.at(-1) === EOF) {
+                resolve(concat(chunks).slice(0, -1)); // Remove EOF
+            }
+        });
+        stream.on("end", () => {
+            resolve(concat(chunks));
+        });
     });
-    stream.on("end", () => {
-      resolve(concat(chunks));
-    });
-  });
 }
