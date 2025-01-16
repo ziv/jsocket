@@ -58,4 +58,4 @@ jobs:
 
       - name: jsr - publish
         working-directory: jsr
-        run: npx jsr publish
+        run: npx jsr publish --allow-dirty
