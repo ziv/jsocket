@@ -2,5 +2,8 @@
   "name": "jsr",
   "version": "0.0.0",
   "description": "A simple unix socket server/client utilities",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "deno test"
+  }
 }
