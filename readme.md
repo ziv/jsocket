@@ -1,6 +1,6 @@
 # jsocket
 
-[![Publish](https://github.com/ziv/jsocket/actions/workflows/publish.yml/badge.svg)](https://github.com/ziv/jsocket/actions/workflows/publish.yml)
+[![release](https://github.com/ziv/jsocket/actions/workflows/release.yml/badge.svg)](https://github.com/ziv/jsocket/actions/workflows/release.yml)
 
 A simple unix socket server/client utilities.
 
