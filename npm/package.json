@@ -19,11 +19,6 @@
     "./server": "./server.js",
     "./client": "./client.js"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "tag": "latest",
-    "access": "public"
-  },
   "files": [
     "LICENSE",
     "readme.md",
@@ -41,7 +36,7 @@
   "scripts": {
     "test": "tsx --test *_test.ts",
     "prebuild": "rm -rf dist",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.lib.json",
     "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/"
   },
   "devDependencies": {

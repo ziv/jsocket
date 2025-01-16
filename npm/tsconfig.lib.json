@@ -1,18 +1,10 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "declaration": true,
-    "outDir": "./dist",
-    "lib": [
-      "ES2020",
-      "DOM"
-    ],
-    "types": [
-      "node"
-    ]
-  },
+  "extends": "./tsconfig.json",
   "include": [
-    "."
+    "client.ts",
+    "index.ts",
+    "read.ts",
+    "server.ts",
+    "write.ts"
   ]
 }
