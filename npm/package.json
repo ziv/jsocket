@@ -21,8 +21,23 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
-    "tag": "latest"
+    "tag": "latest",
+    "access": "public"
   },
+  "files": [
+    "LICENSE",
+    "readme.md",
+    "index.js",
+    "index.d.ts",
+    "read.js",
+    "read.d.ts",
+    "write.js",
+    "write.d.ts",
+    "server.js",
+    "server.d.ts",
+    "client.js",
+    "client.d.ts"
+  ],
   "scripts": {
     "test": "tsx --test *_test.ts",
     "prebuild": "rm -rf dist",

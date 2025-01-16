@@ -54,7 +54,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
 
       - name: jsr - match
-        run: node match.js
+        run: node ./utils/match.js
 
       - name: jsr - dependencies
         run: deno install
