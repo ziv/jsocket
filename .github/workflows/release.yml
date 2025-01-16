@@ -1,4 +1,4 @@
-name: Release
+name: release
 on:
   workflow_dispatch:
 
@@ -15,30 +15,47 @@ jobs:
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Setup Node.js
+
+      - name: setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
 
-      - name: Install dependencies
+      - name: npm - dependencies
         run: npm clean-install
         working-directory: npm
 
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+      - name: npm - verify
         run: npm audit signatures
         working-directory: npm
 
-      - name: Build package
+      - name: npm - build
         working-directory: npm
         run: npm run build
 
-      - name: Release
+      - name: npm - release
         run: npx semantic-release
         working-directory: npm
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
+
+      - name: jsr - match
+        run: ./match.js > jsr/deno.json
+
+      - name: jsr - dependencies
+        run: deno install
+        working-directory: jsr
+
+      - name: jsr - publish
+        working-directory: jsr
+        run: npx jsr publish
