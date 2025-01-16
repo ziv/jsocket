@@ -1,0 +1,21 @@
+{
+  "name": "@xpr/jsocket",
+  "version": "0.0.0",
+  "description": "A simple unix socket server/client utilities",
+  "main": "utils/match.js",
+  "author": "Ziv Perry",
+  "license": "MIT",
+  "workspaces": [
+    "npm",
+    "jsr",
+    "utils"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "husky": "^9.1.7"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}
