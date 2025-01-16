@@ -1,2 +1,0 @@
-npm --prefix jsr test
-npm --prefix npm test
