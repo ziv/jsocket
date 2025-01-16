@@ -25,9 +25,6 @@ jobs:
           node-version: "lts/*"
           registry-url: "https://registry.npmjs.org"
 
-      - name: root dir & files
-        run: pwd & ls -a
-
       - name: Install dependencies
         run: npm clean-install
         working-directory: npm
@@ -36,9 +33,9 @@ jobs:
         run: npm audit signatures
         working-directory: npm
 
-      - name: Working dir & files
-        run: pwd && ls -a
+      - name: Build package
         working-directory: npm
+        run: npm run build
 
       - name: Release
         run: npx semantic-release

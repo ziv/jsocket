@@ -44,17 +44,10 @@
         "@semantic-release/npm",
         {
           "pkgRoot": "dist",
-          "npmPublish": false,
-          "tarballDir": "tar"
+          "npmPublish": false
         }
       ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/github",
-        {
-          "assets": "tar/*.tgz"
-        }
-      ]
+      "@semantic-release/github"
     ]
   }
 }
