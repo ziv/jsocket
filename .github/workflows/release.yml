@@ -25,6 +25,9 @@ jobs:
           node-version: "lts/*"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Root dir
+        run: pwd
+
       - name: Install dependencies
         run: npm clean-install
         working-directory: npm
@@ -33,9 +36,14 @@ jobs:
         run: npm audit signatures
         working-directory: npm
 
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
-        run: npx semantic-release
+      - name: Working dir
+        run: pwd
         working-directory: npm
+
+
+#      - name: Release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#          NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
+#        run: npx semantic-release
+#        working-directory: npm
