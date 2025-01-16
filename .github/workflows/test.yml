@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
+          cache-dependency-path: npm/package-lock.json
           cache: npm
 
       - name: npm - dependencies
