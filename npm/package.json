@@ -20,12 +20,15 @@
     "./client": "./client.js"
   },
   "scripts": {
+    "test": "tsx --test *_test.ts",
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/"
   },
   "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
     "@types/node": "^22.10.6",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
 }
