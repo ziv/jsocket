@@ -1,6 +1,10 @@
-name: release
+name: release @xpr/jsocket
+
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read # for checkout
