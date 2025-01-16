@@ -1,7 +1,14 @@
 /**
  * Create a Unix socket client and make a request.
  *
- * Supports both Deno and Node.js runtimes.
+ * @example usage:
+ * ```ts
+ * import client from "@xpr/jsocket/client";
+ *
+ * const response = await client("/tmp/my-socket", "Hello, world!");
+ * ```
+ *
+ * Deno runtime.
  * @module
  */
 import { decode, encode, type ValueType } from "@std/msgpack";
@@ -10,13 +17,8 @@ import write from "./write.ts";
 
 /**
  * Create a Unix socket client and make a request.
- *
- * @example usage:
- * ```ts
- * import client from "@xpr/jsocket/client";
- *
- * const response = await client("/tmp/my-socket", "Hello, world!");
- * ```
+ * @param path
+ * @param body
  */
 export default async function client<B extends ValueType, R extends ValueType>(
   path: string,

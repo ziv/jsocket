@@ -4,8 +4,6 @@
  * Takes a Uint8Array and writes it to a writable stream in chunks of 1024 bytes.
  * Appends a null byte (EOF) to the end of the stream.
  *
- * Supports Node.js Writable streams.
- *
  * @example usage:
  * ```ts
  * import write from "@xpr/jsocket/write";
@@ -14,6 +12,7 @@
  * // output => Hello, World!\0
  * ```
  *
+ * Node.js version.
  * @module
  */
 import type { Duplex, Writable } from "node:stream";

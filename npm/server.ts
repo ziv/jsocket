@@ -15,6 +15,7 @@
  * // events is an instance of EventTarget providing error events during connection handling
  * ```
  *
+ * Node.js version.
  * @module
  */
 import { createServer, type Server, type Socket } from 'node:net';
@@ -37,16 +38,12 @@ export type UnixTransportServer<T = unknown> = {
  * @param path string path to create unix-socket
  * @param handler connection handler to process incoming requests
  */
-export default function server(path: string, handler: ConnectionHandler): UnixTransportServer<Server>;
-/** @internal runtime signature contain dependencies. */
 export default function server(
     path: string,
     handler: ConnectionHandler,
-    // dependencies, do not use directly
-    create = createServer,
 ): UnixTransportServer<Server> {
     const events = new EventTarget();
-    const server = create(async (conn: Socket) => {
+    const server = createServer(async (conn: Socket) => {
         let raw;
         try {
             raw = await read(conn);

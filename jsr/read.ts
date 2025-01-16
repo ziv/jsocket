@@ -1,25 +1,28 @@
 /**
- * Read data from a readable stream.
- * Supports both ReadableStream and Node.js streams.
+ * Read binary data from a readable stream.
+ *
+ * Takes a readable stream read it till it ends or an EOF byte is encountered
+ * Returns the data as a Uint8Array while removing the EOF byte.
+ *
+ * Supports Node.js Readable streams.
+ *
+ * @example usage:
+ * ```ts
+ * import { Readable } from "node:stream";
+ * import read from "@xpr/jsocket/read";
+ *
+ * const readable = new Readable({});
+ * const data: Uint8Array = await read(readable);
+ * ```
+ *
+ * Deno version.
  * @module
  */
 import { concat } from "@std/bytes";
 
 const EOF = "\0".charCodeAt(0);
 
-/**
- * Read data from a readable stream.
- * Reads until the stream is closed or an EOF byte is encountered.
- *
- * @example usage:
- * ```ts
- * import { assertEquals } from "@std/assert";
- * import read from "@xpr/jsocket/read";
- *
- * const readable = new ReadableStream<Uint8Array>({});
- * const raw = await read(readable);
- * ```
- */
+/** Read data from a readable stream. */
 export default async function read(
   stream: ReadableStream<Uint8Array>,
 ): Promise<Uint8Array> {

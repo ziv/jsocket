@@ -15,6 +15,7 @@
  * const data: Uint8Array = await read(readable);
  * ```
  *
+ * Node.js version.
  * @module
  */
 import type { Duplex, Readable } from "node:stream";

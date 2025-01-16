@@ -1,16 +1,28 @@
 /**
  * Create Unix socket server.
+ * Node.js version.
  *
- * Supports both Deno and Node.js runtimes.
+ * @example usage:
+ * ```ts
+ * import createServer from "@xpr/jsocket/server";
+ *
+ * const { server, events } = await createServer("/tmp/my-socket", async (buf: ValueType) => {
+ *   console.log("Received:", buf);
+ *   return "OK" as ValueType;
+ * });
+ *
+ * // server is an instance of Deno.Listener
+ * // events is an instance of EventTarget providing error events during connection handling
+ * ```
+ *
+ * Deno version.
  * @module
  */
 import { decode, encode, type ValueType } from "@std/msgpack";
 import read from "./read.ts";
 import write from "./write.ts";
 
-/**
- * Connection handler function.
- */
+/** Connection handler */
 export type ConnectionHandler = (buf: ValueType) => Promise<ValueType>;
 
 /**
@@ -22,19 +34,9 @@ export type UnixTransportServer<T = unknown> = {
 };
 
 /**
- * Create and start listening to Unix socket server.
- *
- * @example usage:
- * ```ts
- * import createServer from "@xpr/jsocket/server";
- *
- * await createServer("/tmp/my-socket", async (buf: string) => {
- *   console.log("Received:", buf);
- *   return "OK";
- * });
- * ```
- *
- * @module
+ * Create Unix socket server.
+ * @param path string path to create unix-socket
+ * @param handler connection handler to process incoming requests
  */
 export default function server(
   path: string,
