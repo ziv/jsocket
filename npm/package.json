@@ -19,20 +19,12 @@
     "./server": "./server.js",
     "./client": "./client.js"
   },
-  "files": [
-    "LICENSE",
-    "readme.md",
-    "index.js",
-    "index.d.ts",
-    "read.js",
-    "read.d.ts",
-    "write.js",
-    "write.d.ts",
-    "server.js",
-    "server.d.ts",
-    "client.js",
-    "client.d.ts"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziv/jsocket.git",
+    "directory": "npm"
+  },
+  "homepage": "https://github.com/ziv/jsocket",
   "scripts": {
     "test": "tsx --test *_test.ts",
     "prebuild": "rm -rf dist",
