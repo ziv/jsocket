@@ -44,7 +44,7 @@
         "@semantic-release/npm",
         {
           "pkgRoot": "dist",
-          "npmPublish": false
+          "npmPublish": true
         }
       ],
       "@semantic-release/github"
