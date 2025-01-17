@@ -3,7 +3,6 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "declaration": true,
-    "outDir": "./dist",
     "lib": [
       "ES2020",
       "DOM"

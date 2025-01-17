@@ -1,5 +1,10 @@
 .idea
 tmp
 node_modules
+vendor
 dist
 npm/node_modules
+packages/**/*.js
+packages/**/*.d.ts
+packages/**/*.js.map
+packages/**/.idea

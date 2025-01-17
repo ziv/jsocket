@@ -1,0 +1,7 @@
+{
+  "name": "jsr-xpr-jsocket",
+  "version": "0.0.0",
+  "description": "A simple unix socket server/client utilities",
+  "author": "Ziv Perry",
+  "license": "MIT"
+}
