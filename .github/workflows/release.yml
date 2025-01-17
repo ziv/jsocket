@@ -36,8 +36,8 @@ jobs:
           cache-dependency-path: deno.lock
           cache: npm
 
-      - name: ☂️dependencies
-        run: npm ci -w packages/npm
+      - name: ☂️👠dependencies
+        run: deno install # install dependencies for both
 
       - name: ☂️verify
         run: npm audit signatures -w packages/npm
@@ -53,9 +53,6 @@ jobs:
 
       - name: 👠 match versions
         run: deno -A ./utils/match.ts
-
-      - name: 👠 dependencies
-        run: deno install
 
       - name: 👠 publish
         run: npx jsr publish --allow-dirty -w packages/jsr
