@@ -1,0 +1,10 @@
+{
+  "name": "xpr-jsocket",
+  "description": "A simple unix socket server/client utilities",
+  "author": "Ziv Perry",
+  "license": "MIT",
+  "workspaces": [
+    "packages/npm",
+    "packages/jsr"
+  ]
+}

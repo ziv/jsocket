@@ -24,44 +24,38 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup Deno
+      - name: 👠 setup Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
-      - name: setup Node.js
+      - name: ☂️setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache-dependency-path: npm/package-lock.json
+          cache-dependency-path: deno.lock
           cache: npm
 
-      - name: npm - dependencies
-        run: npm clean-install
-        working-directory: npm
+      - name: ☂️dependencies
+        run: npm ci -w packages/npm
 
-      - name: npm - verify
-        run: npm audit signatures
-        working-directory: npm
+      - name: ☂️verify
+        run: npm audit signatures -w packages/npm
 
-      - name: npm - build
-        working-directory: npm
-        run: npm run build
+      - name: ☂️build
+        run: npm run build -w packages/npm
 
-      - name: npm - release
-        run: npx semantic-release
-        working-directory: npm
+      - name: ☂️release
+        run: npx semantic-release -w packages/npm
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH }}
 
-      - name: jsr - match
-        run: node ./utils/match.js
+      - name: 👠 match versions
+        run: deno -A ./utils/match.ts
 
-      - name: jsr - dependencies
+      - name: 👠 dependencies
         run: deno install
-        working-directory: jsr
 
-      - name: jsr - publish
-        working-directory: jsr
-        run: npx jsr publish --allow-dirty
+      - name: 👠 publish
+        run: npx jsr publish --allow-dirty -w packages/jsr

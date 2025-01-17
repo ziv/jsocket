@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "description": "A simple unix socket server/client utilities",
   "main": "index.js",
+  "scripts": {
+    "test": "node --test *_test.js",
+    "build": "tsc -p tsconfig.json"
+  },
   "author": "Ziv Perry",
   "license": "MIT",
-  "private": false,
   "keywords": [
     "unix",
     "socket",
@@ -23,18 +26,6 @@
     "./server": "./server.js",
     "./client": "./client.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ziv/jsocket.git",
-    "directory": "npm"
-  },
-  "homepage": "https://github.com/ziv/jsocket",
-  "scripts": {
-    "test": "tsx --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info *_test.ts",
-    "prebuild": "rm -rf dist",
-    "build": "tsc -p tsconfig.lib.json",
-    "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/"
-  },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^22.10.6",
@@ -42,6 +33,12 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
+  "files": [
+    "readme.md",
+    "license",
+    "*.js",
+    "*.d.ts"
+  ],
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -49,7 +46,6 @@
       [
         "@semantic-release/npm",
         {
-          "pkgRoot": "dist",
           "npmPublish": true
         }
       ],
