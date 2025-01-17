@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -17,17 +17,15 @@ jobs:
       - name: Setup repo
         uses: actions/checkout@v4
 
-      - name: setup Node.js
+      - name: ☂️setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache-dependency-path: npm/package-lock.json
+          cache-dependency-path: packages/npm/package-lock.json
           cache: npm
 
-      - name: npm - dependencies
-        run: npm ci
-        working-directory: npm
+      - name: ☂️dependencies
+        run: npm ci -w packages/npm
 
-      - name: npm - tests
-        run: npm test
-        working-directory: npm
+      - name: ☂️tests
+        run: npm test -w packages/npm
