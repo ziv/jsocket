@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/ziv/jsocket",
   "scripts": {
-    "test": "tsx --test *_test.ts",
+    "test": "tsx --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info *_test.ts",
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.lib.json",
     "postbuild": "cp package*.json dist/ && cp ../LICENSE dist/ && cp ../readme.md dist/"
