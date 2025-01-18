@@ -28,28 +28,12 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^22.10.6",
-    "semantic-release": "^24.2.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "@types/node": "^22.10.6"
   },
   "files": [
     "readme.md",
     "license",
     "*.js",
     "*.d.ts"
-  ],
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": true
-        }
-      ],
-      "@semantic-release/github"
-    ]
-  }
+  ]
 }
