@@ -1,27 +1,17 @@
 #!/usr/bin/env -S deno run -A
-import { greaterThan, parse } from "@std/semver";
-import npm from "../packages/npm/package.json" with { type: "json" };
 import deno from "../packages/jsr/deno.json" with { type: "json" };
-
 try {
-  const npmVer = parse(npm.version);
-
-  const url = await fetch("https://jsr.io/@xpr/jsocket/0.27.7/deno.json");
-  const remote = await url.json();
-  const remoteVer = parse(remote.version as string);
-
-  if (!greaterThan(npmVer, remoteVer)) {
-    console.error(
-      `The npm version is not greater than the remote version. ${npm.version} <= ${remote.version}`,
-    );
+  const newVer = Deno.args[0];
+  if (!newVer) {
+    console.error("A new version is required.");
     Deno.exit(1);
   }
-  deno.version = npm.version;
-  Deno.writeTextFileSync(
-    `${import.meta.dirname}/../packages/jsr/deno.jsonc`,
-    JSON.stringify(deno, null, 2),
-  );
+  deno.version = newVer;
+  const path = `${import.meta.dirname}/../packages/jsr/deno.jsonc`;
+  const content = JSON.stringify(deno, null, 2);
+  Deno.writeTextFileSync(path, content);
+  console.log(Deno.readTextFile(path));
 } catch (err) {
   console.error(err);
-  Deno.exit(1);
+  Deno.exit(2);
 }

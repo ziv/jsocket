@@ -6,5 +6,31 @@
   "workspaces": [
     "packages/npm",
     "packages/jsr"
-  ]
+  ],
+  "devDependencies": {
+    "@semantic-release/exec": "^6.0.3",
+    "semantic-release": "^24.2.1",
+    "typescript": "^5.7.3"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": true,
+          "pkgRoot": "packages/npm"
+        }
+      ],
+      "@semantic-release/github",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "Deno scripts/match.ts ${nextRelease.version}",
+          "publishCmd": "npx jsr publish --allow-dirty -w packages/jsr"
+        }
+      ]
+    ]
+  }
 }

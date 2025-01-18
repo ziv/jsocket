@@ -1,6 +1,0 @@
-{
-  "vendor": true,
-  "imports": {
-    "@std/semver": "jsr:@std/semver@^1.0.3"
-  }
-}

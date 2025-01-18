@@ -1,0 +1,4 @@
+{
+  // keep local vendor cache
+  "vendor": true
+}
