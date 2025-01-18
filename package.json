@@ -27,7 +27,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "Deno run -A scripts/match.ts ${nextRelease.version}",
+          "prepareCmd": "deno run -A scripts/match.ts ${nextRelease.version}",
           "publishCmd": "npx jsr publish --allow-dirty -w packages/jsr"
         }
       ]
