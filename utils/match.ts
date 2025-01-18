@@ -6,6 +6,7 @@ try {
     console.error("A new version is required.");
     Deno.exit(1);
   }
+  console.log(`Updating Deno version from ${deno.version} to ${newVer}`);
   deno.version = newVer;
   const path = `${import.meta.dirname}/../packages/jsr/deno.jsonc`;
   const content = JSON.stringify(deno, null, 2);
