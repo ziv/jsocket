@@ -36,7 +36,8 @@ jobs:
       #   cache: npm
 
       - name: 🔑dependencies
-        run: deno install # install dependencies for both
+      #  run: deno install # install dependencies for both
+        run: npm ci
 
       - name: 🍓verify
         run: npm audit signatures -w packages/npm

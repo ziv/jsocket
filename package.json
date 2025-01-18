@@ -19,18 +19,11 @@
       [
         "@semantic-release/npm",
         {
-          "npmPublish": true,
+          "npmPublish": false,
           "pkgRoot": "packages/npm"
         }
       ],
-      "@semantic-release/github",
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "deno run -A utils/match.ts ${nextRelease.version}",
-          "publishCmd": "cd packages/jsr && npx jsr publish --allow-dirty"
-        }
-      ]
+      "@semantic-release/github"
     ]
   }
 }
