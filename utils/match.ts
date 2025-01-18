@@ -13,7 +13,7 @@ try {
     const denoPath = `${import.meta.dirname}/../packages/jsr/deno.json`;
     const pkgPath = `${import.meta.dirname}/../packages/jsr/package.json`;
     Deno.writeTextFileSync(denoPath, JSON.stringify(deno, null, 2));
-    Deno.writeTextFileSync(denoPath, JSON.stringify(pkg, null, 2));
+    Deno.writeTextFileSync(pkgPath, JSON.stringify(pkg, null, 2));
     console.log(Deno.readTextFileSync(denoPath));
     console.log(Deno.readTextFileSync(pkgPath));
     Deno.exit(0);
