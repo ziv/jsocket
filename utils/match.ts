@@ -10,8 +10,8 @@ try {
     console.log(`Updating Deno version to ${newVer}`);
     deno.version = newVer;
     pkg.version = newVer;
-    const denoPath = `${import.meta.dirname}/../packages/jsr/deno.jsonc`;
-    const pkgPath = `${import.meta.dirname}/../packages/jsr/package.jsonc`;
+    const denoPath = `${import.meta.dirname}/../packages/jsr/deno.json`;
+    const pkgPath = `${import.meta.dirname}/../packages/jsr/package.json`;
     Deno.writeTextFileSync(denoPath, JSON.stringify(deno, null, 2));
     Deno.writeTextFileSync(denoPath, JSON.stringify(pkg, null, 2));
     console.log(Deno.readTextFileSync(denoPath));
