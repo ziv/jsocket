@@ -6,12 +6,13 @@ try {
     console.error("A new version is required.");
     Deno.exit(1);
   }
-  console.log(`Updating Deno version from ${deno.version} to ${newVer}`);
+  console.log(`Updating Deno version to ${newVer}`);
   deno.version = newVer;
   const path = `${import.meta.dirname}/../packages/jsr/deno.jsonc`;
   const content = JSON.stringify(deno, null, 2);
   Deno.writeTextFileSync(path, content);
-  console.log(Deno.readTextFile(path));
+  console.log(Deno.readTextFileSync(path));
+  Deno.exit(0);
 } catch (err) {
   console.error(err);
   Deno.exit(2);
