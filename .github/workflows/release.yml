@@ -34,8 +34,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-          cache-dependency-path: deno.lock
-          cache: npm
+      #   cache-dependency-path: deno.lock
+      #   cache: npm
 
       - name: 🔑dependencies
         run: deno install # install dependencies for both
