@@ -3,7 +3,6 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "declaration": true,
-    "outDir": "dist",
     "target": "ES2020",
     "lib": [
       "ESNext",
