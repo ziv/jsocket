@@ -14,7 +14,7 @@ test("write() should write stream while adding EOF", async () => {
       _: never,
       callback: (error?: Error | null) => void,
     ) {
-      res = chunk;
+      res = chunk as any;
       callback();
     },
   });
